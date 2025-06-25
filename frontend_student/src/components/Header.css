@@ -1,0 +1,50 @@
+.portal-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 18px 32px 14px 32px;
+  border-radius: 18px;
+  background: rgba(24,28,43,0.7);
+  box-shadow: 0 0 24px #00fff744, 0 2px 16px 0 #00fff733;
+  border: 1.5px solid #00fff7cc;
+  margin-bottom: 32px;
+  position: relative;
+  z-index: 3;
+}
+.header-left {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.header-icon {
+  font-size: 2.2em;
+  color: #00fff7;
+  filter: drop-shadow(0 0 8px #00fff7cc);
+}
+.header-title {
+  font-size: 1.5em;
+  font-weight: 700;
+  color: #00fff7;
+  letter-spacing: 1px;
+  text-shadow: 0 0 8px #00fff7cc, 0 0 2px #fff;
+}
+.header-center {
+  font-size: 1.1em;
+  color: #fff;
+  font-family: 'Segoe UI', Arial, Helvetica, sans-serif;
+}
+.header-right {
+  display: flex;
+  align-items: center;
+}
+.theme-toggle-btn {
+  background: none;
+  border: none;
+  color: #00fff7;
+  font-size: 1.5em;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.theme-toggle-btn:hover {
+  color: #fff;
+}

@@ -1,0 +1,135 @@
+.student-list-cards {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+  margin-top: 18px;
+}
+.student-card {
+  background: rgba(24,28,43,0.85);
+  border-radius: 18px;
+  box-shadow: 0 4px 32px #00fff733, 0 1.5px 8px #00fff744;
+  padding: 18px 18px 12px 18px;
+  color: #fff;
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: space-between;
+  border: 1.5px solid #00fff7cc;
+  transition: box-shadow 0.3s, transform 0.3s;
+  animation: fadeIn 0.8s;
+  gap: 18px;
+}
+.student-card:hover {
+  box-shadow: 0 8px 48px #00fff7cc, 0 4px 16px #00fff744;
+  transform: translateY(-4px) scale(1.02);
+}
+.student-avatar {
+  background: #181c2b;
+  border-radius: 50%;
+  width: 48px;
+  height: 48px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.6em;
+  font-weight: 700;
+  color: #00fff7;
+  box-shadow: 0 0 16px #00fff7cc;
+  margin-right: 14px;
+}
+.student-details-main {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+.student-name {
+  font-size: 1.18em;
+  font-weight: 600;
+  color: #00fff7;
+  text-shadow: 0 0 8px #00fff7cc;
+}
+.student-email {
+  font-size: 0.98em;
+  color: #bfa14a;
+}
+.student-badges-group {
+  display: flex;
+  gap: 8px;
+  margin-top: 4px;
+}
+.student-badge {
+  background: #222b;
+  color: #00fff7;
+  border-radius: 8px;
+  padding: 2px 10px;
+  font-size: 0.98em;
+  font-weight: 500;
+  box-shadow: 0 0 8px #00fff7cc;
+}
+.student-badge.branch { background: linear-gradient(90deg, #00fff7 60%, #1a237e 100%); color: #181c2b; }
+.student-badge.year { background: linear-gradient(90deg, #bfa14a 60%, #fffbe7 100%); color: #181c2b; }
+.student-badge.semester { background: linear-gradient(90deg, #1a237e 60%, #00fff7 100%); color: #fff; }
+.student-card-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  align-items: flex-end;
+  justify-content: flex-start;
+}
+.edit-btn, .delete-btn {
+  padding: 7px 18px;
+  border-radius: 8px;
+  font-size: 1em;
+  font-weight: 600;
+  border: none;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s, transform 0.2s;
+  box-shadow: 0 0 8px #00fff7cc;
+  margin-bottom: 2px;
+}
+.edit-btn {
+  background: linear-gradient(90deg, #00fff7 60%, #1a237e 100%);
+  color: #181c2b;
+}
+.edit-btn:hover {
+  background: #00fff7;
+  color: #1a237e;
+  transform: scale(1.06);
+}
+.delete-btn {
+  background: linear-gradient(90deg, #ff4e50 60%, #f9d423 100%);
+  color: #181c2b;
+}
+.delete-btn:hover {
+  background: #ff4e50;
+  color: #fff;
+  transform: scale(1.06);
+}
+.student-list-table-header {
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  gap: 8px;
+  font-weight: 700;
+  color: #00fff7;
+  margin-bottom: 8px;
+  font-size: 1.08em;
+}
+.student-card-empty {
+  color: #bfa14a;
+  text-align: center;
+  margin: 18px 0;
+}
+@media (max-width: 900px) {
+  .student-list-cards {
+    gap: 14px;
+  }
+  .student-card {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+  .student-list-table-header {
+    grid-template-columns: repeat(3, 1fr);
+    font-size: 1em;
+  }
+}

@@ -1,0 +1,77 @@
+.attendance-table-wrapper {
+  background: rgba(24,28,43,0.85);
+  border-radius: 18px;
+  box-shadow: 0 4px 32px #00fff733, 0 1.5px 8px #00fff744;
+  padding: 24px 18px 18px 18px;
+  min-width: 320px;
+  max-width: 480px;
+  color: #fff;
+  border: 1.5px solid #00fff7cc;
+  transition: box-shadow 0.3s, transform 0.3s;
+  animation: fadeIn 0.8s;
+}
+.attendance-table-wrapper:hover {
+  box-shadow: 0 8px 48px #00fff7cc, 0 4px 16px #00fff744;
+  transform: translateY(-4px) scale(1.02);
+}
+.attendance-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0 10px;
+  font-size: 1.08em;
+}
+.attendance-table th, .attendance-table td {
+  padding: 10px 8px;
+  text-align: left;
+}
+.attendance-badge {
+  display: inline-block;
+  min-width: 44px;
+  padding: 4px 0;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 1em;
+  text-align: center;
+  margin-bottom: 4px;
+  color: #fff;
+  box-shadow: 0 0 8px #00fff7cc;
+}
+.badge-green {
+  background: linear-gradient(90deg, #00ffb0 60%, #00fff7 100%);
+}
+.badge-yellow {
+  background: linear-gradient(90deg, #ffe066 60%, #ffb300 100%);
+  color: #222;
+}
+.badge-red {
+  background: linear-gradient(90deg, #ff4e50 60%, #f9d423 100%);
+}
+.attendance-progress-bar {
+  width: 100%;
+  height: 8px;
+  background: #222b;
+  border-radius: 6px;
+  margin-top: 2px;
+  overflow: hidden;
+}
+.progress-inner {
+  height: 100%;
+  border-radius: 6px;
+  transition: width 0.5s cubic-bezier(.4,0,.2,1);
+}
+.progress-inner.badge-green {
+  background: linear-gradient(90deg, #00ffb0 60%, #00fff7 100%);
+}
+.progress-inner.badge-yellow {
+  background: linear-gradient(90deg, #ffe066 60%, #ffb300 100%);
+}
+.progress-inner.badge-red {
+  background: linear-gradient(90deg, #ff4e50 60%, #f9d423 100%);
+}
+@media (max-width: 700px) {
+  .attendance-table-wrapper {
+    min-width: 90vw;
+    max-width: 98vw;
+    padding: 12px 2vw;
+  }
+}
