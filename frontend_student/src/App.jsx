@@ -177,14 +177,18 @@ function App() {
       if (mesh && mesh.parentNode) mesh.parentNode.removeChild(mesh);
     };
   }, []);
-  const toggleTheme = () => setTheme(theme === 'dark' ? 'light' : 'dark');
+  // Set theme based on system preference
+  useEffect(() => {
+    const prefersDark = window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+    setTheme(prefersDark ? 'dark' : 'light');
+  }, []);
 
   return (
     <div className={`app-container ${theme}`}>
       <div role="status" aria-live="polite">
         <NotificationBanner message={notification.message} type={notification.type} onClose={() => setNotification({ message: '', type: 'success' })} />
       </div>
-      <Header name={selectedStudent ? selectedStudent.name : 'Select a student'} theme={theme} toggleTheme={toggleTheme} />
+      <Header name={selectedStudent ? selectedStudent.name : 'Select a student'} />
       {/* Lottie Graduation Animation in header area for extra polish */}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 8, marginBottom: -16 }}>
         <Player

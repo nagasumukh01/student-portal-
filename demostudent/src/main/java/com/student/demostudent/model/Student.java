@@ -32,6 +32,10 @@ public class Student {
     private String academicYear;
     @NotBlank(message = "Semester is required")
     private String semester;
+    private String phone;
+    private String fatherName;
+    private String motherName;
+    private String city;
 
     // Attendance: subject -> AttendanceRecord (total, attended)
     @ElementCollection(fetch = FetchType.EAGER)
@@ -61,6 +65,14 @@ public class Student {
     public void setAcademicYear(String academicYear) { this.academicYear = academicYear; }
     public String getSemester() { return semester; }
     public void setSemester(String semester) { this.semester = semester; }
+    public String getPhone() { return phone; }
+    public void setPhone(String phone) { this.phone = phone; }
+    public String getFatherName() { return fatherName; }
+    public void setFatherName(String fatherName) { this.fatherName = fatherName; }
+    public String getMotherName() { return motherName; }
+    public void setMotherName(String motherName) { this.motherName = motherName; }
+    public String getCity() { return city; }
+    public void setCity(String city) { this.city = city; }
     public Map<String, AttendanceRecord> getAttendance() { return attendance; }
     public void setAttendance(Map<String, AttendanceRecord> attendance) { this.attendance = attendance; }
 

@@ -43,3 +43,13 @@
   align-items: center;
   gap: 6px;
 }
+.profile-clickable {
+  cursor: pointer;
+  text-decoration: underline dotted #00fff7;
+  color: #00fff7;
+  transition: color 0.2s;
+}
+.profile-clickable:hover {
+  color: #bfa14a;
+  text-decoration: underline solid #bfa14a;
+}

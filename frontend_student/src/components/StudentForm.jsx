@@ -55,19 +55,43 @@ function getSubjects(branch, year, sem) {
 
 function StudentForm({ initial, onSubmit, onCancel, loading, error }) {
   const [form, setForm] = useState(
-    initial || { name: '', email: '', branch: '', academicYear: '', semester: '', attendance: {} }
+    initial || { name: '', email: '', phone: '', fatherName: '', motherName: '', city: '', branch: '', academicYear: '', semester: '', attendance: {} }
   );
   const [subjects, setSubjects] = useState([]);
   const [newSubject, setNewSubject] = useState('');
   const [formError, setFormError] = useState('');
 
   useEffect(() => {
-    const subs = getSubjects(form.branch, form.academicYear, form.semester);
-    setSubjects(subs);
-    setForm(f => ({
-      ...f,
-      attendance: subs.reduce((a, s) => ({ ...a, [s]: { total: 0, attended: 0 } }), {})
-    }));
+    if (initial) {
+      setForm({
+        id: initial.id || '', // Ensure id is included when editing
+        name: initial.name || '',
+        email: initial.email || '',
+        phone: initial.phone || '',
+        fatherName: initial.fatherName || '',
+        motherName: initial.motherName || '',
+        city: initial.city || '',
+        branch: initial.branch || '',
+        academicYear: initial.academicYear || '',
+        semester: initial.semester || '',
+        attendance: initial.attendance || {}
+      });
+      setSubjects(Object.keys(initial.attendance || {}));
+    } else {
+      setForm({ name: '', email: '', phone: '', fatherName: '', motherName: '', city: '', branch: '', academicYear: '', semester: '', attendance: {} });
+      setSubjects([]);
+    }
+  }, [initial]);
+
+  useEffect(() => {
+    if (!initial) {
+      const subs = getSubjects(form.branch, form.academicYear, form.semester);
+      setSubjects(subs);
+      setForm(f => ({
+        ...f,
+        attendance: subs.reduce((a, s) => ({ ...a, [s]: { total: 0, attended: 0 } }), {})
+      }));
+    }
     // eslint-disable-next-line
   }, [form.branch, form.academicYear, form.semester]);
 
@@ -131,13 +155,17 @@ function StudentForm({ initial, onSubmit, onCancel, loading, error }) {
         return;
       }
     }
-    onSubmit(form);
+    onSubmit(form); // form now always includes id if editing
   };
 
   return (
     <form className="student-form" onSubmit={handleSubmit}>
       <input name="name" value={form.name} onChange={handleChange} placeholder="Name" required />
       <input name="email" value={form.email} onChange={handleChange} placeholder="Email" required />
+      <input name="phone" value={form.phone} onChange={handleChange} placeholder="Phone Number" required />
+      <input name="fatherName" value={form.fatherName} onChange={handleChange} placeholder="Father Name" required />
+      <input name="motherName" value={form.motherName} onChange={handleChange} placeholder="Mother Name" required />
+      <input name="city" value={form.city} onChange={handleChange} placeholder="City" required />
       <select name="branch" value={form.branch} onChange={handleChange} required>
         <option value="">Branch</option>
         {BRANCHES.map(b => <option key={b} value={b}>{b}</option>)}

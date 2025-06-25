@@ -3,8 +3,9 @@ import { FaBookOpen } from 'react-icons/fa';
 import './AttendanceTable.css';
 
 const getBadgeClass = (percent) => {
+  percent = parseFloat(percent);
   if (percent >= 90) return 'badge-green';
-  if (percent >= 80) return 'badge-yellow';
+  if (percent >= 75) return 'badge-yellow';
   return 'badge-red';
 };
 
@@ -13,7 +14,7 @@ function AttendanceTable({ attendance }) {
   const subjects = Object.entries(attendance);
   const totalAttended = subjects.reduce((sum, [_, rec]) => sum + (rec.attended || 0), 0);
   const totalClasses = subjects.reduce((sum, [_, rec]) => sum + (rec.total || 0), 0);
-  const overallPercent = totalClasses ? Math.round((totalAttended / totalClasses) * 100) : 0;
+  const overallPercent = totalClasses ? ((totalAttended / totalClasses) * 100).toFixed(2) : '0.00';
   return (
     <div className="attendance-table-wrapper animate__animated animate__fadeIn">
       <table className="attendance-table">
@@ -27,7 +28,7 @@ function AttendanceTable({ attendance }) {
         </thead>
         <tbody>
           {subjects.map(([subject, record]) => {
-            const percent = record.total ? Math.round((record.attended / record.total) * 100) : 0;
+            const percent = record.total ? ((record.attended / record.total) * 100).toFixed(2) : '0.00';
             return (
               <tr key={subject}>
                 <td>{subject}</td>
