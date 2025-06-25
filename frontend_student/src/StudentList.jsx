@@ -5,7 +5,7 @@ import AttendanceTable from './components/AttendanceTable';
 import ConfirmDialog from './components/ConfirmDialog';
 import './components/StudentListModern.css';
 
-function StudentList({ setNotification }) {
+function StudentList({ setNotification, setSelectedStudent }) {
   const [students, setStudents] = useState([]);
   const [page, setPage] = useState(0);
   const [size, setSize] = useState(4);
@@ -143,13 +143,20 @@ function StudentList({ setNotification }) {
               </div>
               <div>
                 <AttendanceTable attendance={s.attendance} />
-                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 12 }}>
+                <div style={{ display: 'flex', justifyContent: 'center', marginTop: 12, gap: 8 }}>
                   <button
                     className="edit-btn subject-edit-btn"
                     onClick={() => { setEditStudent(s); setShowForm(true); }}
                     title="Edit"
                   >
                     Edit
+                  </button>
+                  <button
+                    className="dashboard-btn"
+                    onClick={() => setSelectedStudent && setSelectedStudent(s)}
+                    title="Show in Dashboard"
+                  >
+                    Show in Dashboard
                   </button>
                 </div>
               </div>

@@ -35,7 +35,8 @@ function GraduationCapIcon() {
 
 function App() {
   const [theme, setTheme] = useState('dark');
-  const [user, setUser] = useState({ name: 'Alex', branch: 'CSE', semester: 6, year: 3 });
+  const [students, setStudents] = useState([]); // All students
+  const [selectedStudent, setSelectedStudent] = useState(null); // Student shown in dashboard
   const [attendance, setAttendance] = useState({
     Mathematics: { attended: 42, total: 45 },
     Physics: { attended: 38, total: 45 },
@@ -44,6 +45,12 @@ function App() {
   });
   const [notification, setNotification] = useState({ message: '', type: 'success' });
   const notificationTimeout = useRef();
+
+  // Fetch students on mount (simulate or use API)
+  useEffect(() => {
+    // TODO: Replace with real API call if needed
+    // Example: fetchStudents().then(setStudents);
+  }, []);
 
   // Auto-dismiss notification after 3s
   useEffect(() => {
@@ -177,7 +184,7 @@ function App() {
       <div role="status" aria-live="polite">
         <NotificationBanner message={notification.message} type={notification.type} onClose={() => setNotification({ message: '', type: 'success' })} />
       </div>
-      <Header name={user.name} theme={theme} toggleTheme={toggleTheme} />
+      <Header name={selectedStudent ? selectedStudent.name : 'Select a student'} theme={theme} toggleTheme={toggleTheme} />
       {/* Lottie Graduation Animation in header area for extra polish */}
       <div style={{ display: 'flex', justifyContent: 'center', alignItems: 'center', marginTop: 8, marginBottom: -16 }}>
         <Player
@@ -189,13 +196,13 @@ function App() {
         />
       </div>
       <div className="main-content animate__animated animate__fadeInUp" style={{display: 'flex', flexWrap: 'wrap', gap: 32, justifyContent: 'center', alignItems: 'flex-start'}}>
-        <ProfileCard student={user} />
-        <AttendanceTable attendance={attendance} />
+        {selectedStudent && <ProfileCard student={selectedStudent} />}
+        {selectedStudent && <AttendanceTable attendance={selectedStudent.attendance || attendance} />}
       </div>
       <div style={{ color: theme === 'dark' ? '#bfa14a' : '#444', fontSize: '1.1em', margin: '32px 0 24px 0', textAlign: 'center', fontFamily: 'serif' }}>
         Manage student details and attendance records with ease
       </div>
-      <StudentList setNotification={setNotification} />
+      <StudentList setNotification={setNotification} setSelectedStudent={setSelectedStudent} />
     </div>
   );
 }
